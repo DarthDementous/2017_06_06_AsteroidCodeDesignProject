@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <LinkedList.hpp>
 #include <Texture.h>
 #include <Renderer2D.h>
 #include <Audio.h>
@@ -36,6 +36,6 @@ private:
 	aie::Audio* m_bgSnd;              //Play while menu is active
 	bool m_loop;                      //Loop the background sound, true by default
 	//Elements
-	vector<Button2D*> m_btns;         //Vector of unique pointers to menu buttons
+	LinkedList<Button2D*> m_btns;         //Linked list of pointers to menu buttons
 };
 

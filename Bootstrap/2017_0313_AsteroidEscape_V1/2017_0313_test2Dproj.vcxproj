@@ -45,17 +45,19 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <OutDir>$(ProjectDir)Asteroid Fall V2\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dependencies\GSM Library\;$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <TargetName>asteroidfall_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)temp\$(ProjectName)\$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <OutDir>$(ProjectDir)Asteroid Fall V2\</OutDir>
+    <IntDir>$(ProjectDir)temp\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)dependencies\GSM Library\;$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
+    <TargetName>asteroidfall_$(Configuration)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -69,8 +71,20 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>bootstrap.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StateManager_$(Configuration).lib;bootstrap.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>XCOPY /Y /D /E "$(SolutionDir)bin" "$(TargetDir)" </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy/overwrite .dlls and assets from Bootstrap necessary to run application in Visual Studio and as an .exe.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -88,21 +102,35 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>bootstrap.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>StateManager_$(Configuration).lib;bootstrap.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>
+      </Command>
+      <Message>
+      </Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>XCOPY /Y /D /E "$(SolutionDir)bin" "$(TargetDir)" </Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy/overwrite .dlls and assets from Bootstrap necessary to run application in Visual Studio and as an .exe.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="EntityMaker.cpp" />
-    <ClCompile Include="Button2D.cpp" />
-    <ClCompile Include="Entity2D.cpp" />
-    <ClCompile Include="Menu2D.cpp" />
-    <ClCompile Include="Utility.cpp" />
-    <ClCompile Include="Vector2.cpp" />
-    <ClCompile Include="_2017_0313_test2DprojApp.cpp" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source\Entities\EntityMaker.cpp" />
+    <ClCompile Include="Source\Menu\Button2D.cpp" />
+    <ClCompile Include="Source\Entities\Entity2D.cpp" />
+    <ClCompile Include="Source\Menu\Menu2D.cpp" />
+    <ClCompile Include="Source\States\MenuState.cpp" />
+    <ClCompile Include="Source\Utilities\Utility.cpp" />
+    <ClCompile Include="Source\Utilities\Vector2.cpp" />
+    <ClCompile Include="Source\_2017_0313_test2DprojApp.cpp" />
+    <ClCompile Include="Source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EntityMaker.h" />
+    <ClInclude Include="MenuState.h" />
     <ClInclude Include="Button2D.h" />
     <ClInclude Include="Entity2D.h" />
     <ClInclude Include="ErrorManager.h" />
