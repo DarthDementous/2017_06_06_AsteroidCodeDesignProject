@@ -33,10 +33,12 @@ Asteroid Fall Code Design
 - In-built Unit Testing for all custom containers and their functions
 	- Memory leak detector confirms that the containers have no memory leaks.
 - Menu system
-- State Manager library that can process active states lower on the stack.
+- State Manager library that can process active states lower on the stack, and individually freeze update/draw capabilities of states.
 - Header only library of custom containers (Map, List, LinkedList, Stack, Queue)
 - Automatic DOS command that copies the contents of Bootstrap's bin on  into the output directory of the game (post-build event), 
 for ease of compiling and running outside of the environment.
+- Debug mode fps counter shows game running at consistent 60 FPS.
+- Ability to seamlessly pause and un-pause game when in play mode.
 =======================================================================================================================================================
 3. REPOSITORY LINKS
 --------------------
