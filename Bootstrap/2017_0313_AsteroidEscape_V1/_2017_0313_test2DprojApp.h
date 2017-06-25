@@ -5,10 +5,12 @@
 #include "Vector2.h"
 #include "Settings.h"
 #include "Menu2D.h"
-#include "EntityMaker.h"
+#include <Asteroid.h>
 #include <vector>
 #include <Map.hpp>
+#include <LinkedList.hpp>
 #include <memory>
+#include <Player.h>
 
 class GameStateManager;
 
@@ -27,9 +29,7 @@ public:
 
 	///Initialization/De-initialization
 	virtual bool startup();
-	void initializeMenus();
 	virtual void shutdown();
-	void resetGame();
 	
 	///Update
 	virtual void update(float deltaTime);
@@ -46,21 +46,25 @@ public:
 public:
 	///Variables
 	//Maps
+	
 	//AIE
 	std::unique_ptr<aie::Renderer2D>				m_2dRenderer;      //Unique pointer, only one 2dRenderer for the game
+	
 	//Timers
 	float m_asteroidTimeInterval;
 	float m_bulletTimeInterval;
 	float m_timer;
 	int m_score;
+	
 	//Menu stuff
-	std::unique_ptr<Menu2D> m_mainMenu;
-	std::unique_ptr<Menu2D> m_endMenu;
+	std::shared_ptr<Menu2D> m_mainMenu;
+	std::shared_ptr<Menu2D> m_endMenu;
+	
 	//Game objects
-	vector <std::unique_ptr<Asteroid>>	m_Asteroids;
-	vector <std::unique_ptr<Bullet>>	m_Bullets;
+	LinkedList <std::shared_ptr<Asteroid>>	m_Asteroids;
+	LinkedList <std::shared_ptr<Bullet>>	m_Bullets;
 
-	std::unique_ptr<Player> m_Player;
+	std::shared_ptr<Player> m_Player;
 
 	Map<textureID, std::shared_ptr<aie::Texture>>	m_textureList;   //We want to assign the same texture to multiple things, therefore shared pointer
 	Map<fontID, std::shared_ptr<aie::Font>>			m_fontList;
@@ -68,22 +72,11 @@ public:
 	int maxAsteroids = MIN_ASTEROIDS;
 
 	// State Manager
-	std::unique_ptr<GameStateManager> m_stateManager;
+	std::shared_ptr<GameStateManager> m_stateManager;
 
-private:
 	///Methods
 	//Button functions
 	void startFunc();
+	void restartFunc();
 	void quitFunc();
 };
-template<typename T>
-void _2017_0313_test2DprojApp::cleanUp(vector<T> &a_vec) {
-	///Get rid of dead entities
-	SelectionSort(a_vec);          
-	//Keep erasing until there's no dead entities left at the beginning of the list (check from top)
-	for (size_t i = 0; i < a_vec.size(); ++i) {
-		if (a_vec[i]->getHealth() == 0) {
-			a_vec.erase(a_vec.begin() + i);
-		}
-	}
-}

@@ -47,7 +47,7 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)Asteroid Fall V2\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Components\;$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\GSM Library\;$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <TargetName>asteroidfall_$(Configuration)</TargetName>
   </PropertyGroup>
@@ -55,7 +55,7 @@
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)Asteroid Fall V2\</OutDir>
     <IntDir>$(ProjectDir)temp\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)Source\Components\;$(ProjectDir);$(SolutionDir)dependencies\GSM Library\include;$(SolutionDir)dependencies/include/;$(SolutionDir)bootstrap;$(SolutionDir)dependencies/imgui;$(SolutionDir)dependencies/glm;$(VC_IncludePath);$(WindowsSDK_IncludePath);$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)dependencies\GSM Library\;$(SolutionDir)temp\bootstrap\$(Configuration);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <TargetName>asteroidfall_$(Configuration)</TargetName>
   </PropertyGroup>
@@ -118,27 +118,48 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\CAsteroidDeployer.cpp" />
+    <ClCompile Include="Source\Entities\Bullet.cpp" />
+    <ClCompile Include="Source\Entities\Asteroid.cpp" />
+    <ClCompile Include="Source\Entities\Player.cpp" />
+    <ClCompile Include="Source\Components\CPlayerMover.cpp" />
+    <ClCompile Include="Source\States\PauseState.cpp" />
+    <ClCompile Include="Source\States\PlayState.cpp" />
+    <ClCompile Include="Source\States\EndMenuState.cpp" />
     <ClCompile Include="Source\Entities\EntityMaker.cpp" />
     <ClCompile Include="Source\Menu\Button2D.cpp" />
     <ClCompile Include="Source\Entities\Entity2D.cpp" />
     <ClCompile Include="Source\Menu\Menu2D.cpp" />
-    <ClCompile Include="Source\States\MenuState.cpp" />
+    <ClCompile Include="Source\States\MainMenuState.cpp" />
     <ClCompile Include="Source\Utilities\Utility.cpp" />
     <ClCompile Include="Source\Utilities\Vector2.cpp" />
     <ClCompile Include="Source\_2017_0313_test2DprojApp.cpp" />
     <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\States\SplashState.cpp" />
+    <ClCompile Include="Source\Components\CWeapon.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="CAsteroidDeployer.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="EndMenuState.h" />
     <ClInclude Include="EntityMaker.h" />
-    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="Button2D.h" />
     <ClInclude Include="Entity2D.h" />
     <ClInclude Include="ErrorManager.h" />
     <ClInclude Include="Menu2D.h" />
+    <ClInclude Include="PauseState.h" />
+    <ClInclude Include="CPlayerMover.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayState.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="Source\Components\IComponent.hpp" />
+    <ClInclude Include="SplashState.h" />
     <ClInclude Include="Utility.h" />
     <ClInclude Include="Vector2.h" />
+    <ClInclude Include="CWeapon.h" />
     <ClInclude Include="_2017_0313_test2DprojApp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -40,6 +40,7 @@ void Menu2D::update(float a_deltaTime, aie::Input* a_input)
 			m_bgSnd->play();
 		}
 	}
+
 	//Get mouse info
 	COORD pt = { -1, -1 };  //Initialize off the screen
 	a_input->getMouseXY(&pt.x, &pt.y); //Set coord to current mouse pos

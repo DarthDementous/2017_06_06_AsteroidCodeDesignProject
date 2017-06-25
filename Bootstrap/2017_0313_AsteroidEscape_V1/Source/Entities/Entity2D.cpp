@@ -1,4 +1,13 @@
 #include "Entity2D.h"
+#include <IComponent.hpp>
+
+Entity2D::~Entity2D()
+{
+	// Clean up held components
+	for (auto comp : m_components) {
+		delete comp;
+	}
+}
 
 void Entity2D::takeDamage(short a_dmg)
 {

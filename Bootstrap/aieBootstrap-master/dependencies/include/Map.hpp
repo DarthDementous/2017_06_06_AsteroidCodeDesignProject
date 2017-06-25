@@ -70,9 +70,6 @@ public:
 
 #pragma region Tree Iterator and Ranged-for Functionality
 	struct TreeIterator {
-		// I am Map's friend, I have access to its protected and private members
-		//friend class Map<K, V>;	
-
 		TreeIterator(TreeNode* a_ptr) : m_ptr(a_ptr) {}
 
 		TreeNode* m_ptr = nullptr;

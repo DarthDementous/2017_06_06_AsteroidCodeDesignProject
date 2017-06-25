@@ -117,20 +117,13 @@ public:
 		LinkIterator(LinkNode* a_link) : m_link(a_link) {}
 		LinkNode*	m_link;						/*LinkNode we're pointing at*/
 
-		LinkIterator& operator--() {			/*PREFIX: Move to previous link node value*/
-			m_link = m_link->prev;
-			return *this;
-		}
-
-		LinkIterator operator--(int) {			/*POSTFIX: Move to the previous link node value after leaving the expression*/
-			LinkNode result(*this);
-			--(*this);
-			return result;
-		}
-
-		LinkIterator& operator++() {			/*PREFIX: Move to next link node value*/
-			m_link = m_link->m_next;
-			return *this;
+		LinkIterator operator++() {			/*PREFIX: Move to next link node value*/
+			if (m_link) {
+				m_link = m_link->m_next;
+				return *this;
+			}
+			
+			return LinkIterator(nullptr);
 		}
 
 		LinkIterator operator++(int) {			/*POSTFIX: Move to the next link node value after leaving the expression*/
@@ -161,6 +154,21 @@ public:
 	};
 
 #pragma endregion
+
+	/**
+	*	@brief Find Iterator pointing at found value.
+	*	@return Iterator pointing at found value.
+	*/
+	LinkIterator FindIter(T m_value) {
+		for (auto iter = begin(); iter != end(); ++iter) {
+			if (iter.GetLink()->GetValue() == m_value) {
+				return iter;
+			}
+		}
+
+		// No matching iterator found.
+		return LinkIterator(nullptr);
+	}
 
 	/**
 	*	@brief Delete dynamically allocated memory held by iterator
